@@ -9,6 +9,13 @@ and prints the result to the terminal window.
 
 """
 
+def is_float(value):
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
+
 def simple_calculator(operation: str, num1: float, num2: float) -> float:
     """
     Function that takes in two numbers and an operation (add, subtract, multiply, divide),
@@ -41,10 +48,21 @@ def main():
     
     print(f"===== Simple Calculator =====")
 
-    # Ask the user for sample input    
-    num1 = float(input("Enter the first number: "))
-    num2 = float(input("Enter the second number: "))
-    operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+    # Ask the user for sample input   
+    while (True):
+        num1 = input("Enter the first number: ")
+        if not is_float(num1):
+            print("Invalid input. Please enter a number.")
+            continue
+        num1 = float(num1)
+
+        num2 = input("Enter the second number: ")
+        if not is_float(num2):
+            print("Invalid input. Please enter a number.")
+            continue
+        num2 = float(num2)
+        operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+        break
 
     # Perform the calculation and display the result
     result = simple_calculator(operation, num1, num2)
